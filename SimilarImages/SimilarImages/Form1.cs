@@ -266,16 +266,10 @@ namespace SimilarImages
         {
             if (pictureBox.Image == null) { return; }
 
-            DialogResult dr = MessageBox.Show($"Move this image [{label.Text}] to recycle bin?",
-                "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (dr == DialogResult.OK)
-            {
-                pictureBox.Image.Dispose();
-                pictureBox.Image = null;
-                FileSystem.DeleteFile(Path.Combine(folderPath, label.Text),
-                    UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-                label.Text = "Deleted";
-            }
+            pictureBox.Image.Dispose();
+            pictureBox.Image = null;
+            FileSystem.DeleteFile(Path.Combine(folderPath, label.Text), UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+            bgw_Calculate.RunWorkerAsync();
         }
 
         private void btn_Open1_Click(object sender, EventArgs e)
