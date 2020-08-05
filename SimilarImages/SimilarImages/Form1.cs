@@ -208,7 +208,10 @@ namespace SimilarImages
                 lvw_Result.Items.Add($"Result {i + 1} - {tuples[i].Item3:P1}");
             }
             lvw_Result.EndUpdate();
-            lvw_Result.Items[0].Selected = true;
+            if (lvw_Result.Items.Count > 0)
+            {
+                lvw_Result.Items[0].Selected = true;
+            }
             lvw_Result.Select();
         }
 
